@@ -13,7 +13,9 @@ import com.belutrac.earthquakemonitor.databinding.EqListItemBinding
 
 private val TAG = EqAdarter::class.java.simpleName
 
-class EqAdarter(private val context: Context) : ListAdapter<Earthquake, EqAdarter.EqViewHolder> (DiffCallback){
+class EqAdarter(private val context: Context) : ListAdapter<Earthquake, EqAdarter.EqViewHolder> (
+    DiffCallback
+){
 
     companion object DiffCallback : DiffUtil.ItemCallback<Earthquake>()
     {
@@ -22,19 +24,19 @@ class EqAdarter(private val context: Context) : ListAdapter<Earthquake, EqAdarte
         }
 
         override fun areContentsTheSame(oldItem: Earthquake, newItem: Earthquake): Boolean {
-            return oldItem == newItem
+           return oldItem == newItem
         }
     }
 
     lateinit var onItemClickListener : (Earthquake) -> Unit
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqAdarter.EqViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EqViewHolder {
         val binding = EqListItemBinding.inflate(LayoutInflater.from(parent.context))
         return EqViewHolder(binding) //Devuelvo un objeto viewHolder con los elementos del item
     }
 
-    override fun onBindViewHolder(holder: EqAdarter.EqViewHolder, position: Int) { //Seteo los valores del item, para cada uno se ejecuta
-        val earthquake :Earthquake = getItem(position)
+    override fun onBindViewHolder(holder: EqViewHolder, position: Int) { //Seteo los valores del item, para cada uno se ejecuta
+        val earthquake : Earthquake = getItem(position)
         holder.bind(earthquake)
     }
 

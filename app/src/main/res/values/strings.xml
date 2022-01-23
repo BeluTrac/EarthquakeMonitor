@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">EarthquakeMonitor</string>
     <string name="eq_empty_view">No earthquakes right now.</string>
+    <string name="magnitude_format">%.2f</string>
+    <string name="sort_by_magnitude">Sort by magnitude</string>
+    <string name="sort_by_time">Sort by time</string>
+    <string name="richter">Richter</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="latLong_format">%.4f</string>
 </resources>

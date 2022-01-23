@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/drawable/ic_baseline_history_24.xml" value="0.1" />
+        <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/layout/activity_detail.xml" value="0.215" />
         <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/layout/activity_main.xml" value="0.22864583333333333" />
+        <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/layout/eq_list_item.xml" value="0.10989583333333333" />
+        <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/menu/main_menu.xml" value="0.1" />
+        <entry key="..\:/Documentos/EarthquakeMonitor/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
   </component>

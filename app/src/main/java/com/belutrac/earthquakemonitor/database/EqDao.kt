@@ -1,6 +1,5 @@
-package com.belutrac.earthquakemonitor.database
+package com.example.earthquakemonitor.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
