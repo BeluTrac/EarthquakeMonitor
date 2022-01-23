@@ -7,18 +7,15 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.belutrac.earthquakemonitor.Earthquake
 import com.belutrac.earthquakemonitor.R
-import com.belutrac.earthquakemonitor.databinding.ActivityDetailBinding
 import com.belutrac.earthquakemonitor.databinding.ActivityMainBinding
 import com.belutrac.earthquakemonitor.detail.detailActivity
+import com.belutrac.earthquakemonitor.map.MapsActivity
 import com.example.earthquakemonitor.api.ApiResponseStatus
 import com.example.earthquakemonitor.api.WorkerUtil
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val SORT_TYPE_KEY = "sort_type"
 private val TAG = MainActivity::class.java.simpleName
@@ -42,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter.onItemClickListener = {
-
             openDetailActivity(it)
         }
 
@@ -74,9 +70,16 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.floatingButton.setOnClickListener {
-            val intent = Intent()
-
+           openMapActivity(viewModel.eqList.value)
         }
+    }
+
+    private fun openMapActivity(eqList: MutableList<Earthquake>?) {
+        val intent = Intent(this,MapsActivity::class.java)
+        if (eqList != null) {
+            intent.putExtra(MapsActivity.EARTHQUAKE_LIST_KEY, ArrayList(eqList))
+        }
+        startActivity(intent)
     }
 
     private fun openDetailActivity(it: Earthquake) {

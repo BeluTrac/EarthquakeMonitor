@@ -2,6 +2,7 @@ package com.belutrac.earthquakemonitor.map
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.belutrac.earthquakemonitor.Earthquake
 import com.belutrac.earthquakemonitor.R
 
@@ -13,12 +14,15 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.belutrac.earthquakemonitor.databinding.ActivityMapsBinding
 
-const val EARTHQUAKE_LIST_KEY = "earthquake"
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    private lateinit var earthquake: MutableList<Earthquake>
+    private lateinit var earthquake: ArrayList<Earthquake>
+
+    companion object{
+        const val EARTHQUAKE_LIST_KEY = "earthquake"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,9 +30,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        earthquake = intent?.getParcelableArrayListExtra<Earthquake>(EARTHQUAKE_LIST_KEY)!!
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        earthquake = intent?.getParcelableArrayListExtra<Earthquake>(EARTHQUAKE_LIST_KEY) as ArrayList<Earthquake>
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -38,9 +40,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        for (eq in earthquake){
+            val place = LatLng(eq.latitude,eq.longitude)
+            mMap.addMarker(MarkerOptions()
+                .position(place)
+                .title(eq.place).snippet("Magnitude: ${eq.magnitude} Richter"))
+        }
+
     }
 }
