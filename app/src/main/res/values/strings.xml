@@ -9,4 +9,7 @@
     <string name="longitude">Longitude</string>
     <string name="latLong_format">%.4f</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="need_location_permission_dialog_title">Need location permission</string>
+    <string name="need_location_permission_dialog_message">You have to allow this permission to user the app.</string>
+    <string name="no" translatable="false">No</string>
 </resources>
