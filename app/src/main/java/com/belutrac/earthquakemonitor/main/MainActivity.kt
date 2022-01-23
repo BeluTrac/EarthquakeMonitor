@@ -1,5 +1,6 @@
 package com.belutrac.earthquakemonitor.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.belutrac.earthquakemonitor.Earthquake
 import com.belutrac.earthquakemonitor.R
 import com.belutrac.earthquakemonitor.databinding.ActivityDetailBinding
 import com.belutrac.earthquakemonitor.databinding.ActivityMainBinding
+import com.belutrac.earthquakemonitor.detail.detailActivity
 import com.example.earthquakemonitor.api.ApiResponseStatus
 import com.example.earthquakemonitor.api.WorkerUtil
 import java.text.SimpleDateFormat
@@ -40,15 +42,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter.onItemClickListener = {
-            var binding = ActivityDetailBinding.inflate(layoutInflater)
-            binding.eqMagnitude.text = getString(R.string.magnitude_format,it.magnitude)
-            binding.latText.text = getString(R.string.latLong_format,it.latitude)
-            binding.longText.text = getString(R.string.latLong_format,it.longitude)
-            binding.placeText.text = it.place
 
-            val simpleDateFormat = SimpleDateFormat("dd/MMM/yyyy hh:mm:ss", Locale.getDefault())
-            binding.date.text =  simpleDateFormat.format(Date(it.time))
-            setContentView(binding.root)
+            openDetailActivity(it)
         }
 
         binding.eqRecycler.layoutManager = LinearLayoutManager(this) //Creo un linearLayoutManager
@@ -77,6 +72,18 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        binding.floatingButton.setOnClickListener {
+            val intent = Intent()
+
+        }
+    }
+
+    private fun openDetailActivity(it: Earthquake) {
+        val intent = Intent(this,detailActivity::class.java)
+        intent.putExtra(detailActivity.EARTHQUAKE_KEY,it)
+
+        startActivity(intent)
     }
 
     private fun getSortType(): Boolean {
