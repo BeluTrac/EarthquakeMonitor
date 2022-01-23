@@ -41,6 +41,19 @@ class MainViewModel(application: Application,private val sortType : Boolean) : A
         }
     }
 
+    fun updatesEarthquakes(sortByMagnitude: Boolean){
+        viewModelScope.launch {
+            try {
+                _status.value = ApiResponseStatus.LOADING
+                _eqList.value = repository.fetchEarthquakes(sortByMagnitude)
+                _status.value = ApiResponseStatus.DONE
+            } catch (e: UnknownHostException) {
+                _status.value = ApiResponseStatus.ERROR
+                Log.d(TAG, "No internet connection")
+            }
+        }
+    }
+
     fun reloadEarthquakesFromDatabase(sortByMagnitude : Boolean) {
         viewModelScope.launch {
                 _eqList.value = repository.fetchEarthquakesByDatabase(sortByMagnitude )

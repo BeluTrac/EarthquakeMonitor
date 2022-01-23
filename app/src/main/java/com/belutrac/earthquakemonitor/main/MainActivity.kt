@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.swipeRefresh.setProgressViewEndTarget(false,0)
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.reloadEarthquakes()
+            viewModel.updatesEarthquakes(getSortType())
             binding.swipeRefresh.isRefreshing = false
         }
 
