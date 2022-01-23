@@ -1,4 +1,4 @@
-package com.example.earthquakemonitor.database
+package com.belutrac.earthquakemonitor.database
 
 import androidx.room.Dao
 import androidx.room.Insert

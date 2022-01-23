@@ -1,10 +1,10 @@
-package com.example.earthquakemonitor.api
+package com.belutrac.earthquakemonitor.api
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.earthquakemonitor.database.getDatabase
 import com.belutrac.earthquakemonitor.main.MainRepository
+import com.belutrac.earthquakemonitor.database.getDatabase
 
 class SyncWorkManager (appContext: Context, params : WorkerParameters): CoroutineWorker(appContext,params){
     companion object{

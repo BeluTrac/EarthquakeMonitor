@@ -4,8 +4,8 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
 import com.belutrac.earthquakemonitor.Earthquake
-import com.example.earthquakemonitor.api.ApiResponseStatus
-import com.example.earthquakemonitor.database.getDatabase
+import com.belutrac.earthquakemonitor.api.ApiResponseStatus
+import com.belutrac.earthquakemonitor.database.getDatabase
 import kotlinx.coroutines.*
 import java.net.UnknownHostException
 
@@ -27,7 +27,7 @@ class MainViewModel(application: Application,private val sortType : Boolean) : A
         reloadEarthquakesFromDatabase(sortType)
     }
 
-    private fun reloadEarthquakes()
+    fun reloadEarthquakes()
     {
         viewModelScope.launch {
             try {

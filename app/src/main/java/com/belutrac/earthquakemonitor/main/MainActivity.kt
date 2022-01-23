@@ -3,6 +3,7 @@ package com.belutrac.earthquakemonitor.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -14,8 +15,8 @@ import com.belutrac.earthquakemonitor.R
 import com.belutrac.earthquakemonitor.databinding.ActivityMainBinding
 import com.belutrac.earthquakemonitor.detail.detailActivity
 import com.belutrac.earthquakemonitor.map.MapsActivity
-import com.example.earthquakemonitor.api.ApiResponseStatus
-import com.example.earthquakemonitor.api.WorkerUtil
+import com.belutrac.earthquakemonitor.api.ApiResponseStatus
+import com.belutrac.earthquakemonitor.api.WorkerUtil
 
 private const val SORT_TYPE_KEY = "sort_type"
 private val TAG = MainActivity::class.java.simpleName
@@ -43,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.eqRecycler.layoutManager = LinearLayoutManager(this) //Creo un linearLayoutManager
+
+        binding.swipeRefresh.setProgressViewEndTarget(false,0)
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.reloadEarthquakes()
+            binding.swipeRefresh.isRefreshing = false
+        }
+
 
         WorkerUtil.scheduleSync(this)
 

@@ -1,4 +1,4 @@
-package com.example.earthquakemonitor.database
+package com.belutrac.earthquakemonitor.database
 
 import android.content.Context
 import androidx.room.Database
@@ -13,7 +13,7 @@ abstract class EqDatabase : RoomDatabase(){
 
 private lateinit var INSTANCE: EqDatabase
 
-fun getDatabase(context: Context): EqDatabase{
+fun getDatabase(context: Context): EqDatabase {
     synchronized(EqDatabase::class.java){
         if(!::INSTANCE.isInitialized){
             INSTANCE = Room.databaseBuilder(

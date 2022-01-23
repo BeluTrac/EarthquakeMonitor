@@ -1,9 +1,9 @@
 package com.belutrac.earthquakemonitor.main
 
 import com.belutrac.earthquakemonitor.Earthquake
-import com.example.earthquakemonitor.api.EqJsonResponse
-import com.example.earthquakemonitor.api.service
-import com.example.earthquakemonitor.database.EqDatabase
+import com.belutrac.earthquakemonitor.api.EqJsonResponse
+import com.belutrac.earthquakemonitor.api.service
+import com.belutrac.earthquakemonitor.database.EqDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

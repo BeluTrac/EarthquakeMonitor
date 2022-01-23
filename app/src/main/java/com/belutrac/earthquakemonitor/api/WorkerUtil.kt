@@ -1,4 +1,4 @@
-package com.example.earthquakemonitor.api
+package com.belutrac.earthquakemonitor.api
 
 import android.content.Context
 import androidx.work.*
